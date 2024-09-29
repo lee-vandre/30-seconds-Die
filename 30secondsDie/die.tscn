@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://buv86tma355kj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8tme3"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_7ptmc"]
+albedo_color = Color(0.187176, 0.187176, 0.187176, 1)
+emission_on_uv2 = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_sgk75"]
+material = SubResource("ORMMaterial3D_7ptmc")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flm3x"]
+
+[sub_resource type="TextMesh" id="TextMesh_orgjk"]
+material = SubResource("StandardMaterial3D_flm3x")
+text = "1"
+font_size = 127
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_me480"]
+
+[sub_resource type="TextMesh" id="TextMesh_irn1v"]
+material = SubResource("StandardMaterial3D_me480")
+text = "2"
+font_size = 127
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6p2j"]
+
+[sub_resource type="TextMesh" id="TextMesh_soyfj"]
+material = SubResource("StandardMaterial3D_f6p2j")
+text = "0"
+font_size = 127
+
+[node name="Die" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8tme3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_sgk75")
+
+[node name="1" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.00242, 0.107888, 0)
+mesh = SubResource("TextMesh_orgjk")
+
+[node name="1(2)" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.04065, 0.107888, 0)
+mesh = SubResource("TextMesh_orgjk")
+
+[node name="2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.01686)
+mesh = SubResource("TextMesh_irn1v")
+
+[node name="2(2)" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0242652, 0, -1.02623)
+mesh = SubResource("TextMesh_irn1v")
+
+[node name="0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.03484, 0)
+mesh = SubResource("TextMesh_soyfj")
+
+[node name="0(2)" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.02572, 0)
+mesh = SubResource("TextMesh_soyfj")

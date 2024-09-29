@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd65pj0l5f3i3"]
+
+[ext_resource type="Script" path="res://scene_1.gd" id="1_mchwb"]
+[ext_resource type="PackedScene" uid="uid://l3hhyj8mq2uq" path="res://box.tscn" id="1_xoms0"]
+[ext_resource type="PackedScene" uid="uid://buv86tma355kj" path="res://die.tscn" id="2_ig3nl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1mnvg"]
+
+[sub_resource type="Sky" id="Sky_v1gk5"]
+sky_material = SubResource("ProceduralSkyMaterial_1mnvg")
+
+[sub_resource type="Environment" id="Environment_hkwfc"]
+background_mode = 2
+sky = SubResource("Sky_v1gk5")
+ambient_light_color = Color(0.894922, 0.894922, 0.894922, 1)
+tonemap_mode = 3
+fog_enabled = true
+fog_light_color = Color(0.0995546, 0.112246, 0.132199, 1)
+
+[node name="scene1" type="Node3D"]
+script = ExtResource("1_mchwb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.541471, 23.8439, 0.290586)
+
+[node name="Die" parent="." instance=ExtResource("2_ig3nl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68301, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hkwfc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0421544, 0.999111, 0, -0.999111, 0.0421544, 0, 17.1502, 9.76875)
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="roll" type="Button" parent="."]
+offset_left = 65.0
+offset_top = 461.0
+offset_right = 216.0
+offset_bottom = 582.0
+text = "Roll!"
+
+[node name="reset" type="Button" parent="."]
+offset_left = 952.0
+offset_top = 455.0
+offset_right = 1091.0
+offset_bottom = 573.0
+text = "Reset Die"
+
+[node name="box" parent="." instance=ExtResource("1_xoms0")]
+
+[node name="RayCast3D" type="RayCast3D" parent="box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24884, 0)
+
+[connection signal="button_down" from="roll" to="." method="_on_roll_button_down"]
+[connection signal="button_up" from="roll" to="." method="_on_roll_button_up"]
+[connection signal="pressed" from="roll" to="." method="_on_roll_pressed"]
+[connection signal="button_down" from="reset" to="." method="_on_reset_button_down"]
